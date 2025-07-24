@@ -156,15 +156,18 @@ const UrbanRedactle = () => {
         <h1>Urban Dictionary Redactle</h1>
         <p className="hidden-word">
           🔒 Hidden Word:{" "}
-          {term.split(" ").map((w, i) => (
-            <span
-              key={i}
-              className="redacted"
-              style={{ marginRight: "4px", display: "inline-block" }}
-            >
-              {"█".repeat(w.length)}
-            </span>
-          ))}
+          {term.split(" ").map((w, i) => {
+            const isRevealed = hasWon || gaveUp;
+            return (
+              <span
+                key={i}
+                className={isRevealed ? "revealed" : "redacted"}
+                style={{ marginRight: "4px", display: "inline-block" }}
+              >
+                {isRevealed ? w : "█".repeat(w.length)}
+              </span>
+            );
+          })}
         </p>
         {highlightLength > 0 && (
           <p className="highlight-info">
