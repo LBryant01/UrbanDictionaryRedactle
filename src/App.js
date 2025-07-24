@@ -120,9 +120,19 @@ const UrbanRedactle = () => {
       setInput("");
       return;
     }
+
     setGuessedWords((prev) => [...prev, cleaned]);
     setGuessCount((prev) => prev + 1);
-    if (cleaned === term) setHasWon(true);
+
+    const allWordsGuessed = term
+      .split(" ")
+      .every(
+        (w) =>
+          guessedWords.includes(w.toLowerCase()) || w.toLowerCase() === cleaned
+      );
+
+    if (allWordsGuessed) setHasWon(true);
+
     setInput("");
   };
 
