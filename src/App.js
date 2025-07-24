@@ -1,5 +1,3 @@
-// Urban Dictionary Redactle Clone - Only redact the target word in the example section
-
 import React, { useState, useEffect } from "react";
 import "./UrbanRedactle.css";
 
@@ -18,13 +16,15 @@ const RedactMeaningText = (
     const isRevealed =
       revealAll || guessedWords.includes(cleaned) || i % revealEvery === 0;
     const shouldReveal = isRevealed && !isTarget;
+    const redactedLength = cleaned.length;
+
     return (
       <span
         key={i}
         className={shouldReveal || revealAll ? "revealed" : "redacted"}
         style={{ marginRight: "4px", display: "inline-block" }}
       >
-        {shouldReveal || revealAll ? word : "████"}
+        {shouldReveal || revealAll ? word : "█".repeat(redactedLength || 4)}
       </span>
     );
   });
@@ -35,13 +35,15 @@ const RedactExampleText = (text, targetWord, revealAll = false) => {
     const cleaned = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
     const isTarget = cleaned === targetWord.toLowerCase();
     const shouldReveal = !isTarget || revealAll;
+    const redactedLength = cleaned.length;
+
     return (
       <span
         key={i}
         className={shouldReveal ? "revealed" : "redacted"}
         style={{ marginRight: "4px", display: "inline-block" }}
       >
-        {shouldReveal ? word : "████"}
+        {shouldReveal ? word : "█".repeat(redactedLength || 4)}
       </span>
     );
   });
@@ -152,7 +154,10 @@ const UrbanRedactle = () => {
 
       <div className="main">
         <h1>Urban Dictionary Redactle</h1>
-        <p className="hidden-word">🔒 Hidden Word: {"*".repeat(term.length)}</p>
+        <p className="hidden-word">
+          🔒 Hidden Word:{" "}
+          <span className="redacted">{"█".repeat(term.length)}</span>
+        </p>
         {highlightLength > 0 && (
           <p className="highlight-info">
             🔍 Highlighted word has {highlightLength} characters
