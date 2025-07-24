@@ -1,150 +1,286 @@
 /* Reset and Base */
+/* RESET & BASE */
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
+  font-family: "Arial Rounded MT Bold", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  background-color: #f7f9fa;
   color: #222;
   height: 100vh;
   overflow: hidden;
 }
 
+/* LAYOUT */
 .layout {
   display: flex;
   height: 100vh;
+  background: #f7f9fa;
   overflow: hidden;
 }
 
-/* Sidebar */
+/* SIDEBAR - Matches Urban Dictionary vote box & left spacing */
 .sidebar {
-  width: 200px;
-  padding: 20px;
-  background-color: #e8ecf1;
-  border-right: 1px solid #ccc;
+  width: 230px;
+  padding: 28px 20px 12px 28px;
+  background: #fff;
+  border-right: 2px solid #dde3e7;
+  box-shadow: 3px 0 8px 0 #e8ecf1;
   overflow-y: auto;
 }
 
 .sidebar h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+  color: #3a3a3a;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .sidebar li {
-  margin-bottom: 6px;
+  margin-bottom: 9px;
+  background: #e8ecf1;
+  border-radius: 7px;
+  padding: 6px 10px;
+  color: #20274a;
+  font-weight: bold;
 }
 
-/* Main Content */
+/* MAIN AREA */
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: #f7f9fa;
+  min-width: 0;
   height: 100vh;
-  overflow: hidden;
 }
 
 h1 {
-  margin-top: 0;
-  color: #3366cc;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  color: #2455f5;
+  font-size: 2rem;
+  font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+  letter-spacing: 0.5px;
 }
 
+/* Urban Dictionary Blue Title Bar */
 .hidden-word {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  background: #2455f5;
+  color: #fff;
+  padding: 8px 22px;
+  font-size: 1.18rem;
+  border-radius: 7px 7px 0 0;
+  margin: 18px 0 0 0;
+  font-weight: bold;
+  letter-spacing: 0.7px;
 }
 
 .highlight-info {
   font-style: italic;
-  color: #666;
+  color: #3366cc;
+  background: #e6eefe;
+  border-radius: 6px;
+  padding: 4px 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .counter {
   margin-bottom: 10px;
   font-weight: bold;
+  color: #2455f5;
+  background: #e8ecf1;
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 6px;
 }
 
-/* Scrollable Content Box */
+/* Definition/Example Box */
 .definition-box {
   flex: 1;
   overflow-y: auto;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
+  background: #fff;
+  border: 2px solid #dde3e7;
+  padding: 28px 26px 18px 26px;
+  border-radius: 0 0 12px 12px;
   margin-bottom: 10px;
+  box-shadow: 0 6px 24px -8px #dde3e7;
 }
 
 .entry {
-  margin-bottom: 15px;
+  margin-bottom: 22px;
+  border-bottom: 1.5px solid #e8ecf1;
+  padding-bottom: 18px;
+}
+
+.entry:last-child {
+  border-bottom: none;
 }
 
 .entry p {
-  margin: 5px 0;
+  margin: 7px 0;
+  font-size: 1.06rem;
 }
 
+.entry strong {
+  color: #2455f5;
+  font-weight: 900;
+  font-family: "Arial Black", Arial, sans-serif;
+}
+
+/* REDACTED/REVEALED WORDS */
 .revealed {
   font-weight: bold;
-  color: #000;
+  color: #222;
+  background: #e9f4ff;
+  padding: 0 4px;
+  border-radius: 3px;
+  margin-right: 2px;
+  display: inline-block;
+  transition: background 0.2s;
 }
 
 .redacted {
-  background-color: #ccc;
-  color: #ccc;
+  background-color: #c7cee3;
+  color: #c7cee3;
   border-radius: 4px;
-  padding: 0 4px;
+  padding: 0 6px;
   margin-right: 2px;
   display: inline-block;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: background 0.2s;
 }
 
-/* Input Box Fixed at Bottom */
+/* INPUT BOX FIXED AT BOTTOM */
 .input-box {
   display: flex;
-  gap: 10px;
-  padding: 12px 20px;
-  border-top: 1px solid #ccc;
-  background-color: #fff;
+  gap: 14px;
+  padding: 14px 28px;
+  border-top: 2px solid #dde3e7;
+  background-color: #f5f8ff;
   position: sticky;
   bottom: 0;
-  z-index: 999;
+  z-index: 10;
 }
 
 .input-box input {
   flex: 1;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #999;
-  border-radius: 6px;
+  padding: 12px;
+  font-size: 1.1rem;
+  border: 2px solid #aac4ff;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: #222;
+}
+
+.input-box input:focus {
+  border-color: #2455f5;
+  box-shadow: 0 0 6px #b5ccff55;
 }
 
 .input-box button {
-  padding: 10px 20px;
+  padding: 11px 30px;
   font-size: 1rem;
-  background-color: #3366cc;
-  color: white;
+  background: #ffdd2d;
+  color: #2d2d2d;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-weight: bold;
+  letter-spacing: 1px;
   cursor: pointer;
+  transition: background 0.15s;
+  box-shadow: 1px 1px 8px #ececec55;
 }
 
 .input-box button:hover {
-  background-color: #264a9f;
+  background: #f9c800;
 }
 
-/* Win Message */
+/* WIN/GIVE-UP MESSAGE */
 .win-message {
-  background-color: #d1ffd1;
-  padding: 20px;
-  border: 2px solid #5ac85a;
+  background: #eaffd7;
+  padding: 22px 24px;
+  border: 2px solid #7fd97f;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin: 22px 0 24px 0;
+  box-shadow: 0 2px 12px #e1ffe1aa;
 }
 
 .win-message h2 {
-  color: #2a902a;
+  color: #228922;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 1.3rem;
+}
+
+/* Give Up Button */
+.give-up {
+  background: #fff4b1;
+  color: #ad9500;
+  border: 1.5px solid #ffdf3b;
+  border-radius: 6px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.give-up:hover {
+  background: #ffe98c;
+}
+
+/* Confirm Give Up Box */
+.confirm-box {
+  background: #fff9e3;
+  border: 2px solid #ffe98c;
+  padding: 18px 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.confirm-box button {
+  margin-right: 12px;
+  padding: 8px 24px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.confirm-box button:first-child {
+  background: #ffe98c;
+  color: #ad9500;
+}
+
+.confirm-box button:last-child {
+  background: #e8ecf1;
+  color: #444;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #dde3e7;
+    padding: 18px 10px;
+    box-shadow: none;
+    order: 2;
+  }
+  .main {
+    order: 1;
+  }
 }
