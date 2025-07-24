@@ -284,3 +284,8 @@ h1 {
     order: 1;
   }
 }
+.hit-rate {
+  font-weight: bold;
+  color: #3366cc;
+  margin-bottom: 8px;
+}

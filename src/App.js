@@ -72,6 +72,23 @@ const countOccurrences = (text, guessedWords) => {
   return freq;
 };
 
+// Hit count helper function
+function getHitCount(guessedWords, definitions) {
+  const text = definitions
+    .map((def) => `${def.meaning} ${def.example}`)
+    .join(" ")
+    .toLowerCase();
+
+  let hits = 0;
+  guessedWords.forEach((guess) => {
+    const regex = new RegExp(`\\b${guess}\\b`, "i");
+    if (regex.test(text)) {
+      hits += 1;
+    }
+  });
+  return hits;
+}
+
 const UrbanRedactle = () => {
   const [term, setTerm] = useState("");
   const [definitions, setDefinitions] = useState([]);
@@ -163,10 +180,19 @@ const UrbanRedactle = () => {
     .join(" ");
   const frequencyMap = countOccurrences(wordFrequency, guessedWords);
 
+  // Hit count and hit rate calculation
+  const hitCount = getHitCount(guessedWords, definitions);
+  const totalGuesses = guessedWords.length;
+  const hitRate =
+    totalGuesses === 0 ? 0 : Math.round((hitCount / totalGuesses) * 100);
+
   return (
     <div className="layout">
       <div className="sidebar">
         <h2>🧠 Your Guesses</h2>
+        <p className="hit-rate">
+          Guess Percentage: {hitCount}/{totalGuesses} ({hitRate}%)
+        </p>
         <ul>
           {guessedWords.map((word, index) => (
             <li key={index}>
@@ -174,6 +200,7 @@ const UrbanRedactle = () => {
             </li>
           ))}
         </ul>
+        <p className="counter">Guesses: {guessCount}</p>
       </div>
 
       <div className="main">
@@ -212,7 +239,6 @@ const UrbanRedactle = () => {
           </div>
         )}
 
-        <p className="counter">Guesses: {guessCount}</p>
         {loading ? (
           <p>Loading definitions...</p>
         ) : (
