@@ -1,0 +1,150 @@
+/* Reset and Base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  background-color: #e8ecf1;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+.sidebar li {
+  margin-bottom: 6px;
+}
+
+/* Main Content */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 0;
+  color: #3366cc;
+}
+
+.hidden-word {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.highlight-info {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.counter {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Scrollable Content Box */
+.definition-box {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.entry {
+  margin-bottom: 15px;
+}
+
+.entry p {
+  margin: 5px 0;
+}
+
+.revealed {
+  font-weight: bold;
+  color: #000;
+}
+
+.redacted {
+  background-color: #ccc;
+  color: #ccc;
+  border-radius: 4px;
+  padding: 0 4px;
+  margin-right: 2px;
+  display: inline-block;
+}
+
+/* Input Box Fixed at Bottom */
+.input-box {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+
+.input-box button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #3366cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.input-box button:hover {
+  background-color: #264a9f;
+}
+
+/* Win Message */
+.win-message {
+  background-color: #d1ffd1;
+  padding: 20px;
+  border: 2px solid #5ac85a;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.win-message h2 {
+  color: #2a902a;
+}
