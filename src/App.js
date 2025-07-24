@@ -3,6 +3,7 @@ import "./UrbanRedactle.css";
 
 const API_URL = "https://unofficialurbandictionaryapi.com/api";
 
+// Redacts and reveals meaning text with individual word support
 const RedactMeaningText = (
   text,
   guessedWords,
@@ -15,39 +16,48 @@ const RedactMeaningText = (
   return text.split(" ").map((word, i) => {
     const cleaned = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
     const isTarget = targetWords.includes(cleaned);
+    // Reveal if guessed, forced, or revealEvery-th word
     const isRevealed =
       revealAll || guessedWords.includes(cleaned) || i % revealEvery === 0;
-    const shouldReveal = isRevealed && !isTarget;
+
     const redactedLength = cleaned.length;
 
     return (
       <span
         key={i}
-        className={shouldReveal || revealAll ? "revealed" : "redacted"}
+        className={isRevealed ? "revealed" : "redacted"}
         style={{ marginRight: "4px", display: "inline-block" }}
       >
-        {shouldReveal || revealAll ? word : "█".repeat(redactedLength || 4)}
+        {isRevealed ? word : "█".repeat(redactedLength || 4)}
       </span>
     );
   });
 };
 
-const RedactExampleText = (text, targetWord, revealAll = false) => {
+// Redacts and reveals example text with individual word support
+const RedactExampleText = (
+  text,
+  targetWord,
+  revealAll = false,
+  guessedWords = []
+) => {
   const targetWords = targetWord.toLowerCase().split(" ");
 
   return text.split(" ").map((word, i) => {
     const cleaned = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
     const isTarget = targetWords.includes(cleaned);
-    const shouldReveal = !isTarget || revealAll;
+    // Reveal if not target OR (if target and guessed/revealAll)
+    const isRevealed = revealAll || !isTarget || guessedWords.includes(cleaned);
+
     const redactedLength = cleaned.length;
 
     return (
       <span
         key={i}
-        className={shouldReveal ? "revealed" : "redacted"}
+        className={isRevealed ? "revealed" : "redacted"}
         style={{ marginRight: "4px", display: "inline-block" }}
       >
-        {shouldReveal ? word : "█".repeat(redactedLength || 4)}
+        {isRevealed ? word : "█".repeat(redactedLength || 4)}
       </span>
     );
   });
@@ -171,7 +181,8 @@ const UrbanRedactle = () => {
         <p className="hidden-word">
           🔒 Hidden Word:{" "}
           {term.split(" ").map((w, i) => {
-            const isRevealed = hasWon || gaveUp;
+            // Reveal each word if guessed, or if won/gave up
+            const isRevealed = isRevealMode || guessedWords.includes(w);
             return (
               <span
                 key={i}
@@ -220,7 +231,12 @@ const UrbanRedactle = () => {
                 </p>
                 <p>
                   <strong>Example:</strong>{" "}
-                  {RedactExampleText(def.example, term, isRevealMode)}
+                  {RedactExampleText(
+                    def.example,
+                    term,
+                    isRevealMode,
+                    guessedWords
+                  )}
                 </p>
                 <hr />
               </div>
