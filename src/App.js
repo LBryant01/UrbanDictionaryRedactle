@@ -156,7 +156,15 @@ const UrbanRedactle = () => {
         <h1>Urban Dictionary Redactle</h1>
         <p className="hidden-word">
           🔒 Hidden Word:{" "}
-          <span className="redacted">{"█".repeat(term.length)}</span>
+          {term.split(" ").map((w, i) => (
+            <span
+              key={i}
+              className="redacted"
+              style={{ marginRight: "4px", display: "inline-block" }}
+            >
+              {"█".repeat(w.length)}
+            </span>
+          ))}
         </p>
         {highlightLength > 0 && (
           <p className="highlight-info">
