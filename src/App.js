@@ -10,9 +10,11 @@ const RedactMeaningText = (
   revealEvery = 6,
   revealAll = false
 ) => {
+  const targetWords = targetWord.toLowerCase().split(" ");
+
   return text.split(" ").map((word, i) => {
     const cleaned = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
-    const isTarget = cleaned === targetWord.toLowerCase();
+    const isTarget = targetWords.includes(cleaned);
     const isRevealed =
       revealAll || guessedWords.includes(cleaned) || i % revealEvery === 0;
     const shouldReveal = isRevealed && !isTarget;
@@ -31,9 +33,11 @@ const RedactMeaningText = (
 };
 
 const RedactExampleText = (text, targetWord, revealAll = false) => {
+  const targetWords = targetWord.toLowerCase().split(" ");
+
   return text.split(" ").map((word, i) => {
     const cleaned = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
-    const isTarget = cleaned === targetWord.toLowerCase();
+    const isTarget = targetWords.includes(cleaned);
     const shouldReveal = !isTarget || revealAll;
     const redactedLength = cleaned.length;
 
